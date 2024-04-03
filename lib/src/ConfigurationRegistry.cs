@@ -4,7 +4,7 @@ using System.Reflection.Metadata;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Wtns.Me.Lib;
+namespace WTNS;
 
 /// <summary>
 /// A registry for managing Configurations.

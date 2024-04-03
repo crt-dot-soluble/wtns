@@ -1,6 +1,6 @@
-using Wtns.Me.Lib.Net.Models;
+using WTNS.Net.Models;
 
-namespace Wtns.Me.Lib.Net;
+namespace WTNS.Net;
 
 public class Session
 {

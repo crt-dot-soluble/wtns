@@ -1,4 +1,4 @@
-namespace Wtns.Me.Lib.Cli;
+namespace WTNS.Cli;
 
 /// <summary>
 /// Describes the bare minimum functionality of a WTNS plugin.

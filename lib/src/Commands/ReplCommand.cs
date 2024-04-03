@@ -1,6 +1,6 @@
 using System.CommandLine;
 using System.CommandLine.NamingConventionBinder;
-using Wtns.Me.Lib.Cli;
+using WTNS.Cli;
 
 public class ReplCommand : Command
 {

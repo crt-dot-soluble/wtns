@@ -1,4 +1,4 @@
-namespace Wtns.Me.Lib;
+namespace WTNS;
 
 public static class HashingService
 {

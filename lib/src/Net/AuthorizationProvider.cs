@@ -1,10 +1,10 @@
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
-using Wtns.Me.Lib.Cli;
-using Wtns.Me.Lib.Net.Models;
+using WTNS.Cli;
+using WTNS.Net.Models;
 
-namespace Wtns.Me.Lib.Net;
+namespace WTNS.Net;
 
 /// <summary>
 /// Provides access to services which require authorization. (i.e. Logging in, Creating a user, Logging out)
@@ -14,7 +14,7 @@ public static class AuthorizationProvider
     /// <summary>
     /// The <see cref="DbContext"/> object to use within Authorization Provider
     /// </summary>
-    public static WtnsContext WtnsContext = new WtnsContext();
+    public static WTNSContext WTNSContext = new WTNSContext();
 
     /// <summary>
     /// Returns a <see cref="User"/> object if the username and password are valid, otherwise returns null.
@@ -24,7 +24,7 @@ public static class AuthorizationProvider
     /// <returns></returns>
     public static User? Login(string username, string password)
     {
-        var user = WtnsContext.Users.FirstOrDefault(u => u.UserName == username);
+        var user = WTNSContext.Users.FirstOrDefault(u => u.UserName == username);
 
         if (user == null)
         {
@@ -63,7 +63,7 @@ public static class AuthorizationProvider
         string? bio = null
     )
     {
-        var existingUser = WtnsContext.Users.FirstOrDefault(u => u.UserName == username);
+        var existingUser = WTNSContext.Users.FirstOrDefault(u => u.UserName == username);
         if (existingUser != null)
         {
             Repl.Log($"{username} alreadys exists");
@@ -83,12 +83,12 @@ public static class AuthorizationProvider
             Session = new Session()
         };
 
-        WtnsContext.Users.Add(newUser);
+        WTNSContext.Users.Add(newUser);
 
         try
         {
             Repl.Log($"Saving changes to database");
-            WtnsContext.SaveChanges();
+            WTNSContext.SaveChanges();
         }
         catch (Exception e)
         {

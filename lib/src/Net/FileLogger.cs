@@ -1,4 +1,4 @@
-namespace Wtns.Me.Lib;
+namespace WTNS;
 
 /// <summary>
 /// Data-To-File implementation of the ILogger interface.

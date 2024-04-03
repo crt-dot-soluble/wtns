@@ -1,4 +1,4 @@
-﻿namespace Wtns.Me.Lib.Net.Models;
+﻿namespace WTNS.Net.Models;
 
 public partial class User
 {

@@ -8,9 +8,9 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Wtns.Me.Lib.Cli;
+using WTNS.Cli;
 
-namespace Wtns.Me.Lib.Commands
+namespace WTNS.Commands
 {
     /// <summary>
     /// A registry which exposes commands to the CLI.
@@ -30,13 +30,13 @@ namespace Wtns.Me.Lib.Commands
 
         private List<string> _history = new List<string>();
 
-        private readonly Command _rootCommand = new WtnsCommand();
+        private readonly Command _rootCommand = new WTNSCommand();
 
-        private Parser _parser = new CommandLineBuilder(new WtnsCommand()).UseDefaults().Build();
+        private Parser _parser = new CommandLineBuilder(new WTNSCommand()).UseDefaults().Build();
 
         private CommandRegistry()
         {
-            RegisterCommand(new WtnsCommand());
+            RegisterCommand(new WTNSCommand());
             RegisterCommand(new UserCommand());
             RegisterCommand(new ReplCommand());
         }
@@ -126,7 +126,7 @@ namespace Wtns.Me.Lib.Commands
             string[] args = command.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             if (args.Length > 0 && _commands.TryGetValue(args[0], out Command cmd))
             {
-                // var rc = (rootCommand == null) ? _rootCommand : new WtnsCommand();
+                // var rc = (rootCommand == null) ? _rootCommand : new WTNSCommand();
                 cmd.Invoke(args);
             }
             else
@@ -149,7 +149,7 @@ namespace Wtns.Me.Lib.Commands
 
             if (command.Length > 0 && _commands.TryGetValue(command[0], out Command cmd))
             {
-                // var rc = (_rootCommand == null) ? _rootCommand : new WtnsCommand();
+                // var rc = (_rootCommand == null) ? _rootCommand : new WTNSCommand();
                 // if (_parser.Parse(command).Errors.Count != 0)
                 // {
                 //     Debug.Print($"CommandRegistry: Failed to parse the command: {fullCommand}");

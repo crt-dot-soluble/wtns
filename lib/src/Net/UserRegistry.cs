@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using Wtns.Me.Lib.Net.Models;
+using WTNS.Net.Models;
 
 /// <summary>
 /// A thread-safe registry of users, keyed by their Id. Allows for a centralized management of users.
@@ -17,9 +17,8 @@ public class UserRegistry
         () => new UserRegistry()
     );
 
-
     /// <summary>
-    /// The thread-safe 
+    /// The thread-safe
     /// </summary>
     public static UserRegistry Instance => lazy.Value;
 

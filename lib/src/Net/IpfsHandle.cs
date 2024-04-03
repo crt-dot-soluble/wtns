@@ -1,7 +1,7 @@
 using Ipfs;
-using Wtns.Me.Lib.Cli;
+using WTNS.Cli;
 
-namespace Wtns.Me.Lib.Net;
+namespace WTNS.Net;
 
 /// <summary>
 /// Uses an existing, locally running, IPFS daemon to complete a given request.

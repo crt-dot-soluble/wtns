@@ -1,4 +1,4 @@
-using Wtns.Me.Lib.Net;
+using WTNS.Net;
 
 namespace tests;
 

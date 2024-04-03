@@ -4,11 +4,11 @@ using System.CommandLine.Parsing;
 using System.Net;
 using System.Reflection.Metadata;
 using Microsoft.Win32.SafeHandles;
-using Wtns.Me.Lib.Cli;
-using Wtns.Me.Lib.Net;
-using Wtns.Me.Lib.Net.Models;
+using WTNS.Cli;
+using WTNS.Net;
+using WTNS.Net.Models;
 
-namespace Wtns.Me.Lib.Commands;
+namespace WTNS.Commands;
 
 /// <summary>
 /// User command which exposes the built
@@ -62,7 +62,7 @@ public class UserCommand : Command
         switch (option.ToLower())
         {
             case "login":
-                var login = AuthorizationProvider.Login("wtns", "wtns");
+                var login = AuthorizationProvider.Login("WTNS", "WTNS");
                 if (login != null)
                 {
                     UserRegistry.Instance.AddOrUpdateUser(login);

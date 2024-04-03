@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace Wtns.Me.Lib;
+namespace WTNS;
 
 /// <summary>
 /// Represents a structured output with sections that can be added, removed, and reordered.

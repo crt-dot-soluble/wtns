@@ -1,4 +1,4 @@
-namespace Wtns.Me.Lib;
+namespace WTNS;
 
 /// <summary>
 /// Contains all application preferences.
@@ -15,7 +15,7 @@ public struct Configuration
     /// <summary>
     /// The secret phrase used for certain functions such as hashing.
     /// </summary>
-    public string Pepper { get; set; } = "wtns";
+    public string Pepper { get; set; } = "WTNS";
 
     /// <summary>
     /// The color of the console foreground.

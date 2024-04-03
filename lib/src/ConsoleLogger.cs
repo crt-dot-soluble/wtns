@@ -1,4 +1,4 @@
-namespace Wtns.Me.Lib;
+namespace WTNS;
 
 using System;
 using System.Text.RegularExpressions;

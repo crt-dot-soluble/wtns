@@ -1,7 +1,7 @@
-using Wtns.Me.Lib.Commands;
-using static Wtns.Me.Lib.StructuredOutput;
+using WTNS.Commands;
+using static WTNS.StructuredOutput;
 
-namespace Wtns.Me.Lib.Cli;
+namespace WTNS.Cli;
 
 /// <summary>
 /// REPL (Read, Evaluate, Print, and Loop) service for the WTNS CLI.

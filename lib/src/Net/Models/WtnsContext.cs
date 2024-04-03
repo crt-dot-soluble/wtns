@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Wtns.Me.Lib.Net.Models;
+namespace WTNS.Net.Models;
 
-public partial class WtnsContext : DbContext
+public partial class WTNSContext : DbContext
 {
-    public WtnsContext() { }
+    public WTNSContext() { }
 
-    public WtnsContext(DbContextOptions<WtnsContext> options)
+    public WTNSContext(DbContextOptions<WTNSContext> options)
         : base(options) { }
 
     public virtual DbSet<User> Users { get; set; }

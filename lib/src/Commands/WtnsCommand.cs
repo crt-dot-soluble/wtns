@@ -1,18 +1,18 @@
 using System.CommandLine;
-using Wtns.Me.Lib.Cli;
-using Wtns.Me.Lib.Net;
+using WTNS.Cli;
+using WTNS.Net;
 
-namespace Wtns.Me.Lib.Commands;
+namespace WTNS.Commands;
 
-public class WtnsCommand : RootCommand
+public class WTNSCommand : RootCommand
 {
     Option<bool> ExecuteOption = new Option<bool>(
         ["--execute", "-e"],
         "If this option is set to true the request will be processed without starting the REPL."
     );
 
-    public WtnsCommand()
-        : base("The wtns root command.")
+    public WTNSCommand()
+        : base("The WTNS root command.")
     {
         AddAlias("cli");
         AddCommand(new UserCommand());

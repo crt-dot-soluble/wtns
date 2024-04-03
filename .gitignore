@@ -1,0 +1,23 @@
+# VSCode 
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# .NET
+**/bin/*
+**/obj/*
+
+# WTNS
+**/logs
+**/ipfs
+history.json
+
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix

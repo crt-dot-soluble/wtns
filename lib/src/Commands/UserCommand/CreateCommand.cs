@@ -1,6 +1,6 @@
 using System.CommandLine;
 using System.CommandLine.NamingConventionBinder;
-using Wtns.Me.Lib.Net;
+using WTNS.Net;
 
 public class CreateCommand : Command
 {

@@ -1,9 +1,9 @@
 using System.CommandLine;
 using System.CommandLine.NamingConventionBinder;
 using System.Net;
-using Wtns.Me.Lib.Net;
+using WTNS.Net;
 
-namespace Wtns.Me.Lib.Commands;
+namespace WTNS.Commands;
 
 public class LoginCommand : Command
 {

@@ -1,4 +1,4 @@
-namespace Wtns.Me.Lib.Cli;
+namespace WTNS.Cli;
 
 /// <summary>
 /// Provides an entry point to supply WTNS with custom code and functionality.

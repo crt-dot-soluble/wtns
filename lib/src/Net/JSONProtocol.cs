@@ -1,4 +1,4 @@
-namespace Wtns.Me.Lib.Net;
+namespace WTNS.Net;
 
 using Newtonsoft.Json;
 
