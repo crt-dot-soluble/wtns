@@ -15,6 +15,10 @@ namespace WTNS.Telemetry;
 *       TODO:
 *           MapProcessorFamilyToFriendlyValue - Complete the mappings from documentation ^
 *           MapProcessorConfigManagerErrorCodeToFriendlyValue - Complete the mappings from documentation
+*
+*           Complete ToFriendlyValue functions for all properties requiring them
+
+            Fix warning on ManagementDateTimeConverter usage (anywhere DateTime is being used)
 */
 
 
@@ -112,7 +116,7 @@ public class WindowsProfiler : IProfiler
             CurrentVoltageFriendlyValue = GetProcessorCurrentVoltageFriendlyValue(),
             DataWidth = GetProcessorDataWidth(),
             Description = GetProcessorDescription(),
-            DeviceId = GetProcessorDeviceID(),
+            DeviceID = GetProcessorDeviceID(),
             ErrorCleared = GetProcessorErrorCleared(),
             ErrorDescription = GetProcessorErrorDescription(),
             ExtClock = GetProcessorExtClock(),
@@ -131,12 +135,12 @@ public class WindowsProfiler : IProfiler
             NumberOfEnabledCore = GetProcessorNumberOfEnabledCore(),
             NumberOfLogicalProcessors = GetProcessorNumberOfLogicalProcessors(),
             PartNumber = GetProcessorPartNumber(),
-            PnpDeviceId = GetProcessorPnpDeviceId(),
+            PNPDeviceID = GetProcessorPNPDeviceID(),
             PowerManagementCapabilities = GetProcessorPowerManagementCapabilities(),
             PowerManagementCapabilitiesFriendlyValue =
                 GetProcessorPowerManagementCapabilitiesFriendlyValue(),
             PowerManagementSupported = GetProcessorPowerManagementSupported(),
-            ProcessorId = GetProcessorProcessorId(),
+            ProcessorID = GetProcessorProcessorId(),
             ProcessorType = GetProcessorProcessorType(),
             ProcessorTypeFriendlyValue = GetProcessorProcessorTypeFriendlyValue(),
             Revision = GetProcessorRevision(),
@@ -152,14 +156,67 @@ public class WindowsProfiler : IProfiler
             SystemCreationClassName = GetProcessorSystemCreationClassName(),
             SystemName = GetProcessorSystemName(),
             ThreadCount = GetProcessorThreadCount(),
-            UniqueId = GetProcessorUniqueId(),
+            UniqueID = GetProcessorUniqueID(),
         };
     }
 
     /// <inheritdoc/>
     public StorageInfo GetStorageInfo()
     {
-        throw new NotImplementedException();
+        return new StorageInfo
+        {
+            Availability = GetStorageAvailability(),
+            BytesPerSector = GetStorageBytesPerSector(),
+            Capabilities = GetStorageCapabilities(),
+            CapabilityDescriptions = GetStorageCapabilityDescriptions(),
+            Caption = GetStorageCaption(),
+            CompressionMethod = GetStorageCompressionMethod(),
+            ConfigManagerErrorCode = GetStorageConfigManagerErrorCode(),
+            ConfigManagerUserConfig = GetStorageConfigManagerUserConfig(),
+            CreationClassName = GetStorageCreationClassName(),
+            DefaultBlockSize = GetStorageDefaultBlockSize(),
+            Description = GetStorageDescription(),
+            DeviceID = GetStorageDeviceID(),
+            ErrorCleared = GetStorageErrorCleared(),
+            ErrorDescription = GetStorageErrorDescription(),
+            ErrorMethodology = GetStorageErrorMethodology(),
+            FirmwareRevision = GetStorageFirmwareRevision(),
+            Index = GetStorageIndex(),
+            InstallDate = GetStorageInstallDate(),
+            InterfaceType = GetStorageInterfaceType(),
+            LastErrorCode = GetStorageLastErrorCode(),
+            Manufacturer = GetStorageManufacturer(),
+            MaxBlockSize = GetStorageMaxBlockSize(),
+            MaxMediaSize = GetStorageMaxMediaSize(),
+            MediaLoaded = GetStorageMediaLoaded(),
+            MediaType = GetStorageMediaType(),
+            MinBlockSize = GetStorageMinBlockSize(),
+            Model = GetStorageModel(),
+            Name = GetStorageName(),
+            NeedsCleaning = GetStorageNeedsCleaning(),
+            NumberOfMediaSupported = GetStorageNumberOfMediaSupported(),
+            Partitions = GetStoragePartitions(),
+            PNPDeviceID = GetStoragePNPDeviceID(),
+            PowerManagementCapabilities = GetStoragePowerManagementCapabilities(),
+            PowerManagementSupported = GetStoragePowerManagementSupported(),
+            SCSIBus = GetStorageSCSIBus(),
+            SCSILogicalUnit = GetStorageSCSILogicalUnit(),
+            SCSIPort = GetStorageSCSIPort(),
+            SCSITargetId = GetStorageSCSITargetId(),
+            SectorsPerTrack = GetStorageSectorsPerTrack(),
+            SerialNumber = GetStorageSerialNumber(),
+            Signature = GetStorageSignature(),
+            Size = GetStorageSize(),
+            Status = GetStorageStatus(),
+            StatusInfo = GetStorageStatusInfo(),
+            SystemCreationClassName = GetStorageSystemCreationClassName(),
+            SystemName = GetStorageSystemName(),
+            TotalCylinders = GetStorageTotalCylinders(),
+            TotalHeads = GetStorageTotalHeads(),
+            TotalSectors = GetStorageTotalSectors(),
+            TotalTracks = GetStorageTotalTracks(),
+            TracksPerCylinder = GetStorageTracksPerCylinder(),
+        };
     }
 
     /// <inheritdoc/>
@@ -171,7 +228,38 @@ public class WindowsProfiler : IProfiler
     /// <inheritdoc/>
     public MotherboardInfo GetMotherboardInfo()
     {
-        throw new NotImplementedException();
+        return new MotherboardInfo
+        {
+            Caption = GetMotherboardCaption(),
+            ConfigOptions = GetMotherboardConfigOptions(),
+            CreationClassName = GetMotherboardCreationClassName(),
+            Depth = GetMotherboardDepth(),
+            Description = GetMotherboardDescription(),
+            Height = GetMotherboardHeight(),
+            HostingBoard = GetMotherboardHostingBoard(),
+            HotSwappable = GetMotherboardHotSwappable(),
+            InstallDate = GetMotherboardInstallDate(),
+            Manufacturer = GetMotherboardManufacturer(),
+            Model = GetMotherboardModel(),
+            Name = GetMotherboardName(),
+            OtherIdentifyingInfo = GetMotherboardOtherIdentifyingInfo(),
+            PartNumber = GetMotherboardPartNumber(),
+            PoweredOn = GetMotherboardPoweredOn(),
+            Product = GetMotherboardProduct(),
+            Removable = GetMotherboardRemovable(),
+            Replaceable = GetMotherboardReplaceable(),
+            RequirementsDescription = GetMotherboardRequirementsDescription(),
+            RequiresDaughterBoard = GetMotherboardRequiresDaughterBoard(),
+            SerialNumber = GetMotherboardSerialNumber(),
+            SKU = GetMotherboardSKU(),
+            SlotLayout = GetMotherboardSlotLayout(),
+            SpecialRequirements = GetMotherboardSpecialRequirements(),
+            Status = GetMotherboardStatus(),
+            Tag = GetMotherboardTag(),
+            Version = GetMotherboardVersion(),
+            Weight = GetMotherboardWeight(),
+            Width = GetMotherboardWidth(),
+        };
     }
 
     /// <inheritdoc/>
@@ -183,7 +271,74 @@ public class WindowsProfiler : IProfiler
     /// <inheritdoc/>
     public OsInfo GetOsInfo()
     {
-        throw new NotImplementedException();
+        return new OsInfo
+        {
+            BootDevice = GetOsBootDevice(),
+            BuildNumber = GetOsBuildNumber(),
+            BuildType = GetOsBuildType(),
+            Caption = GetOsCaption(),
+            CodeSet = GetOsCodeSet(),
+            CountryCode = GetOsCountryCode(),
+            CreationClassName = GetOsCreationClassName(),
+            CSDVersion = GetOsCSDVersion(),
+            CSName = GetOsCSName(),
+            CurrentTimeZone = GetOsCurrentTimeZone(),
+            DataExecutionPrevention_Available = GetOsDataExecutionPrevention_Available(),
+            DataExecutionPrevention_32BitApplications =
+                GetOsDataExecutionPrevention_32BitApplications(),
+            DataExecutionPrevention_Drivers = GetOsDataExecutionPrevention_Drivers(),
+            DataExecutionPrevention_SupportPolicy = GetOsDataExecutionPrevention_SupportPolicy(),
+            Debug = GetOsDebug(),
+            Description = GetOsDescription(),
+            Distributed = GetOsDistributed(),
+            EncryptionLevel = GetOsEncryptionLevel(),
+            ForegroundApplicationBoost = GetOsForegroundApplicationBoost(),
+            FreePhysicalMemory = GetOsFreePhysicalMemory(),
+            FreeSpaceInPagingFiles = GetOsFreeSpaceInPagingFiles(),
+            FreeVirtualMemory = GetOsFreeVirtualMemory(),
+            InstallDate = GetOsInstallDate(),
+            LastBootUpTime = GetOsLastBootUpTime(),
+            LocalDateTime = GetOsLocalDateTime(),
+            Locale = GetOsLocale(),
+            Manufacturer = GetOsManufacturer(),
+            MaxNumberOfProcesses = GetOsMaxNumberOfProcesses(),
+            MaxProcessMemorySize = GetOsMaxProcessMemorySize(),
+            MUILanguages = GetOsMUILanguages(),
+            Name = GetOsName(),
+            NumberOfLicensedUsers = GetOsNumberOfLicensedUsers(),
+            NumberOfProcesses = GetOsNumberOfProcesses(),
+            NumberOfUsers = GetOsNumberOfUsers(),
+            OperatingSystemSKU = GetOsOperatingSystemSKU(),
+            Organization = GetOsOrganization(),
+            OSArchitecture = GetOsOSArchitecture(),
+            OSLanguage = GetOsOSLanguage(),
+            OSProductSuite = GetOsOSProductSuite(),
+            OSType = GetOsOSType(),
+            OtherTypeDescription = GetOsOtherTypeDescription(),
+            PAEEnabled = GetOsPAEEnabled(),
+            PlusProductID = GetOsPlusProductID(),
+            PlusVersionNumber = GetOsPlusVersionNumber(),
+            PortableOperatingSystem = GetOsPortableOperatingSystem(),
+            Primary = GetOsPrimary(),
+            ProductType = GetOsProductType(),
+            RegisteredUser = GetOsRegisteredUser(),
+            SerialNumber = GetOsSerialNumber(),
+            ServicePackMajorVersion = GetOsServicePackMajorVersion(),
+            ServicePackMinorVersion = GetOsServicePackMinorVersion(),
+            SizeStoredInPagingFiles = GetOsSizeStoredInPagingFiles(),
+            Status = GetOsStatus(),
+            SuiteMask = GetOsSuiteMask(),
+            SystemDevice = GetOsSystemDevice(),
+            SystemDirectory = GetOsSystemDirectory(),
+            SystemDrive = GetOsSystemDrive(),
+            TotalSwapSpaceSize = GetOsTotalSwapSpaceSize(),
+            TotalVirtualMemorySize = GetOsTotalVirtualMemorySize(),
+            TotalVisibleMemorySize = GetOsTotalVisibleMemorySize(),
+            Version = GetOsVersion(),
+            WindowsDirectory = GetOsWindowsDirectory(),
+            QuantumLength = GetOsQuantumLength(),
+            QuantumType = GetOsQuantumType(),
+        };
     }
 
     /// <inheritdoc/>
@@ -207,14 +362,27 @@ public class WindowsProfiler : IProfiler
             InterleaveDataDepth = GetMemoryInterleaveDataDepth(),
             InterleavePosition = GetMemoryInterleavePosition(),
             Manufacturer = GetMemoryManufacturer(),
+            MaxVoltage = GetMemoryMaxVoltage(),
+            MemoryType = GetMemoryMemoryType(),
+            MinVoltage = GetMemoryMinimumVoltage(),
+            Model = GetMemoryModel(),
+            Name = GetMemoryName(),
+            PartNumber = GetMemoryPartNumber(),
+            PositionInRow = GetMemoryPositionInRow(),
+            PoweredOn = GetMemoryPoweredOn(),
+            Removable = GetMemoryRemovable(),
+            Replaceable = GetMemoryReplaceable(),
+            SerialNumber = GetMemorySerialNumber(),
+            SKU = GetMemorySKU(),
+            SMBIOSMemoryType = GetMemorySMBIOSMemoryType(),
+            Speed = GetMemorySpeed(),
+            Status = GetMemoryStatus(),
+            Tag = GetMemoryTag(),
+            TotalWidth = GetMemoryTotalWidth(),
+            TypeDetail = GetMemoryTypeDetail(),
+            Version = GetMemoryVersion(),
         };
     }
-
-    /*
-    * -------------------------------------------------------------------------------------------------------
-    * ---- PROCESSOR INFORMATION METHODS
-    * -------------------------------------------------------------------------------------------------------
-    */
 
     /// <summary>
     /// Retrieves a property of the processor using WMI as a List where each element in the List corresponds to an individual piece of hardware.
@@ -259,6 +427,16 @@ public class WindowsProfiler : IProfiler
 
         return values;
     }
+
+    /*
+    * -------------------------------------------------------------------------------------------------------
+    * ---- PROCESSOR INFORMATION METHODS
+    * -------------------------------------------------------------------------------------------------------
+    *
+    * Win32_Processor
+    * https://learn.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor?redirectedfrom=MSDN
+    *
+    */
 
     /// <summary>
     /// Retrieves the address width of the processor.
@@ -1188,21 +1366,24 @@ public class WindowsProfiler : IProfiler
     /// <summary>
     /// Retrieves the InstallDate for each processor.
     /// </summary>
+    /// <remarks>
+    /// It is unclear what is returned from ManagementDateTimeConverter.ToDateTime when an incorrect/malformed value is passed as it never returns null.
+    /// Due to this, the returned reference type DateTime is non-nullable.
+    /// </remarks>
     /// <returns>A list of DateTime values representing the InstallDate of each processor, or null if unable to retrieve.</returns>
     public List<DateTime>? GetProcessorInstallDate()
     {
         // IProfiler should be responsible for providing access to the correct Profiler
         // Disable compile time warning.
 
-#pragma warning disable CA1416 // Validate platform compatibility
         var list = GetWmiObject(
             "InstallDate",
             "Win32_Processor",
             value => value != null ? value : null
         )
-            ?.Select(value => ManagementDateTimeConverter.ToDateTime(Convert.ToString(value)))
+            ?.Where(value => value != null)
+            .Select(value => ManagementDateTimeConverter.ToDateTime(Convert.ToString(value)))
             .ToList();
-#pragma warning restore CA1416 // Validate platform compatibility
         return list?.Count > 0 ? list : null;
     }
 
@@ -1471,7 +1652,7 @@ public class WindowsProfiler : IProfiler
     /// Retrieves the PnP (Plug and Play) device ID of the processor.
     /// </summary>
     /// <returns>A list of string values which represent the PnP Device ID of the processor, or null if none is found.</returns>
-    public List<string?>? GetProcessorPnpDeviceId()
+    public List<string?>? GetProcessorPNPDeviceID()
     {
         var list = GetWmiObject(
             "PNPDeviceID",
@@ -1861,7 +2042,7 @@ public class WindowsProfiler : IProfiler
     /// Retrieves the unique ID of the processor.
     /// </summary>
     /// <returns>A list of strings representing the unique ID, or null if none is found.</returns>
-    public List<string?>? GetProcessorUniqueId()
+    public List<string?>? GetProcessorUniqueID()
     {
         var list = GetWmiObject(
             "UniqueId",
@@ -1941,6 +2122,10 @@ public class WindowsProfiler : IProfiler
     * -------------------------------------------------------------------------------------------------------
     * ---- MEMORY INFORMATION METHODS
     * -------------------------------------------------------------------------------------------------------
+    *
+    * Win32_PhysicalMemory
+    * https://learn.microsoft.com/en-us/windows/win32/cimwin32prov/win32-physicalmemory
+    *
     */
 
     public List<uint>? GetMemoryAttributes()
@@ -2153,10 +2338,10 @@ public class WindowsProfiler : IProfiler
         var list = GetWmiObject(
             "InstallDate",
             "Win32_PhysicalMemory",
-            value => value != null ? (DateTime?)Convert.ToDateTime(value) : null
+            value => value != null ? value : null
         )
             ?.Where(value => value != null)
-            .Select(value => value!.Value)
+            .Select(value => ManagementDateTimeConverter.ToDateTime(value!.ToString()))
             .ToList();
 
         return list?.Count > 0 ? list : null;
@@ -2217,7 +2402,7 @@ public class WindowsProfiler : IProfiler
         return list?.Count > 0 ? list : null;
     }
 
-    public List<ushort>? GetMemoryType()
+    public List<ushort>? GetMemoryMemoryType()
     {
         var list = GetWmiObject(
             "Type",
@@ -2233,7 +2418,7 @@ public class WindowsProfiler : IProfiler
 
     public List<string?>? GetMemoryTypeFriendlyValue()
     {
-        var list = GetMemoryType()
+        var list = GetMemoryMemoryType()
             ?.Select(MapMemoryTypeToFriendlyValue)
             .Where(value => value != null)
             .ToList();
@@ -2370,12 +2555,12 @@ public class WindowsProfiler : IProfiler
         return list?.Count > 0 ? list : null;
     }
 
-    public List<uint>? GetMemorySerialNumber()
+    public List<bool>? GetMemoryRemovable()
     {
         var list = GetWmiObject(
-            "SerialNumber",
+            "Removable",
             "Win32_PhysicalMemory",
-            value => value != null ? (uint?)Convert.ToUInt32(value) : null
+            value => value != null ? (bool?)Convert.ToBoolean(value) : null
         )
             ?.Where(value => value != null)
             .Select(value => value!.Value)
@@ -2384,7 +2569,34 @@ public class WindowsProfiler : IProfiler
         return list?.Count > 0 ? list : null;
     }
 
-    public List<string?>? GetMemorySku()
+    public List<bool>? GetMemoryReplaceable()
+    {
+        var list = GetWmiObject(
+            "Replaceable",
+            "Win32_PhysicalMemory",
+            value => value != null ? (bool?)Convert.ToBoolean(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetMemorySerialNumber()
+    {
+        var list = GetWmiObject(
+            "SerialNumber",
+            "Win32_PhysicalMemory",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetMemorySKU()
     {
         var list = GetWmiObject(
             "SKU",
@@ -2487,6 +2699,2006 @@ public class WindowsProfiler : IProfiler
             value => value != null ? Convert.ToString(value) : null
         )
             ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    /*
+    * -------------------------------------------------------------------------------------------------------
+    * ---- STORAGE INFORMATION METHODS
+    * -------------------------------------------------------------------------------------------------------
+    *
+    * Win32_DiskDrive
+    * https://learn.microsoft.com/en-us/windows/win32/cimwin32prov/win32-diskdrive
+    *
+    */
+
+    public List<ushort>? GetStorageAvailability()
+    {
+        var list = GetWmiObject(
+            "Availability",
+            "Win32_DiskDrive",
+            value => value != null ? (ushort?)Convert.ToUInt16(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<uint>? GetStorageBytesPerSector()
+    {
+        var list = GetWmiObject(
+            "BytesPerSector",
+            "Win32_DiskDrive",
+            value => value != null ? (uint?)Convert.ToUInt32(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ushort[]?>? GetStorageCapabilities()
+    {
+        var list = GetWmiObject("Capabilities", "Win32_DiskDrive", value => value as ushort[])
+            ?.Where(value => value != null && value.Length > 0)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string[]?>? GetStorageCapabilityDescriptions()
+    {
+        var list = GetWmiObject(
+            "CapabilityDescriptions",
+            "Win32_DiskDrive",
+            value => value as string[]
+        )
+            ?.Where(value => value != null && value.Length > 0)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetStorageCaption()
+    {
+        var list = GetWmiObject(
+            "Caption",
+            "Win32_DiskDrive",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetStorageCompressionMethod()
+    {
+        var list = GetWmiObject(
+            "CompressionMethod",
+            "Win32_DiskDrive",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<uint>? GetStorageConfigManagerErrorCode()
+    {
+        var list = GetWmiObject(
+            "ConfigManagerErrorCode",
+            "Win32_DiskDrive",
+            value => value != null ? (uint?)Convert.ToUInt32(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<bool>? GetStorageConfigManagerUserConfig()
+    {
+        var list = GetWmiObject(
+            "ConfigManagerUserConfig",
+            "Win32_DiskDrive",
+            value => value != null ? (bool?)Convert.ToBoolean(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetStorageCreationClassName()
+    {
+        var list = GetWmiObject(
+            "CreationClassName",
+            "Win32_DiskDrive",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ulong>? GetStorageDefaultBlockSize()
+    {
+        var list = GetWmiObject(
+            "DefaultBlockSize",
+            "Win32_DiskDrive",
+            value => value != null ? (ulong?)Convert.ToUInt64(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetStorageDescription()
+    {
+        var list = GetWmiObject(
+            "Description",
+            "Win32_DiskDrive",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetStorageDeviceID()
+    {
+        var list = GetWmiObject(
+            "DeviceID",
+            "Win32_DiskDrive",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<bool>? GetStorageErrorCleared()
+    {
+        var list = GetWmiObject(
+            "ErrorCleared",
+            "Win32_DiskDrive",
+            value => value != null ? (bool?)Convert.ToBoolean(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetStorageErrorDescription()
+    {
+        var list = GetWmiObject(
+            "ErrorDescription",
+            "Win32_DiskDrive",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetStorageErrorMethodology()
+    {
+        var list = GetWmiObject(
+            "ErrorMethodology",
+            "Win32_DiskDrive",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetStorageFirmwareRevision()
+    {
+        var list = GetWmiObject(
+            "FirmwareRevision",
+            "Win32_DiskDrive",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<uint>? GetStorageIndex()
+    {
+        var list = GetWmiObject(
+            "Index",
+            "Win32_DiskDrive",
+            value => value != null ? (uint?)Convert.ToUInt32(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<DateTime>? GetStorageInstallDate()
+    {
+#pragma warning disable CA1416 // Validate platform compatibility
+        var list = GetWmiObject(
+            "InstallDate",
+            "Win32_DiskDrive",
+            value => value != null ? value : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => ManagementDateTimeConverter.ToDateTime(value!.ToString()))
+            .ToList();
+#pragma warning restore CA1416 // Validate platform compatibility
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetStorageInterfaceType()
+    {
+        var list = GetWmiObject(
+            "InterfaceType",
+            "Win32_DiskDrive",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<uint>? GetStorageLastErrorCode()
+    {
+        var list = GetWmiObject(
+            "LastErrorCode",
+            "Win32_DiskDrive",
+            value => value != null ? (uint?)Convert.ToUInt32(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetStorageManufacturer()
+    {
+        var list = GetWmiObject(
+            "Manufacturer",
+            "Win32_DiskDrive",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ulong>? GetStorageMaxBlockSize()
+    {
+        var list = GetWmiObject(
+            "MaxBlockSize",
+            "Win32_DiskDrive",
+            value => value != null ? (ulong?)Convert.ToUInt64(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ulong>? GetStorageMaxMediaSize()
+    {
+        var list = GetWmiObject(
+            "MaxMediaSize",
+            "Win32_DiskDrive",
+            value => value != null ? (ulong?)Convert.ToUInt64(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<bool>? GetStorageMediaLoaded()
+    {
+        var list = GetWmiObject(
+            "MediaLoaded",
+            "Win32_DiskDrive",
+            value => value != null ? (bool?)Convert.ToBoolean(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetStorageMediaType()
+    {
+        var list = GetWmiObject(
+            "MediaType",
+            "Win32_DiskDrive",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ulong>? GetStorageMinBlockSize()
+    {
+        var list = GetWmiObject(
+            "MinBlockSize",
+            "Win32_DiskDrive",
+            value => value != null ? (ulong?)Convert.ToUInt64(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetStorageModel()
+    {
+        var list = GetWmiObject(
+            "Model",
+            "Win32_DiskDrive",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetStorageName()
+    {
+        var list = GetWmiObject(
+            "Name",
+            "Win32_DiskDrive",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<bool>? GetStorageNeedsCleaning()
+    {
+        var list = GetWmiObject(
+            "NeedsCleaning",
+            "Win32_DiskDrive",
+            value => value != null ? (bool?)Convert.ToBoolean(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<uint>? GetStorageNumberOfMediaSupported()
+    {
+        var list = GetWmiObject(
+            "NumberOfMediaSupported",
+            "Win32_DiskDrive",
+            value => value != null ? (uint?)Convert.ToUInt32(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<uint>? GetStoragePartitions()
+    {
+        var list = GetWmiObject(
+            "Partitions",
+            "Win32_DiskDrive",
+            value => value != null ? (uint?)Convert.ToUInt32(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetStoragePNPDeviceID()
+    {
+        var list = GetWmiObject(
+            "PNPDeviceID",
+            "Win32_DiskDrive",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ushort[]?>? GetStoragePowerManagementCapabilities()
+    {
+        var list = GetWmiObject(
+            "PowerManagementCapabilities",
+            "Win32_DiskDrive",
+            value => value as ushort[]
+        )
+            ?.Where(value => value != null && value.Length > 0)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<bool>? GetStoragePowerManagementSupported()
+    {
+        var list = GetWmiObject(
+            "PowerManagementSupported",
+            "Win32_DiskDrive",
+            value => value != null ? (bool?)Convert.ToBoolean(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<uint>? GetStorageSCSIBus()
+    {
+        var list = GetWmiObject(
+            "SCSIBus",
+            "Win32_DiskDrive",
+            value => value != null ? (uint?)Convert.ToUInt32(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ushort>? GetStorageSCSILogicalUnit()
+    {
+        var list = GetWmiObject(
+            "SCSILogicalUnit",
+            "Win32_DiskDrive",
+            value => value != null ? (ushort?)Convert.ToUInt16(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ushort>? GetStorageSCSIPort()
+    {
+        var list = GetWmiObject(
+            "SCSIPort",
+            "Win32_DiskDrive",
+            value => value != null ? (ushort?)Convert.ToUInt16(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ushort>? GetStorageSCSITargetId()
+    {
+        var list = GetWmiObject(
+            "SCSITargetId",
+            "Win32_DiskDrive",
+            value => value != null ? (ushort?)Convert.ToUInt16(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<uint>? GetStorageSectorsPerTrack()
+    {
+        var list = GetWmiObject(
+            "SectorsPerTrack",
+            "Win32_DiskDrive",
+            value => value != null ? (uint?)Convert.ToUInt32(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetStorageSerialNumber()
+    {
+        var list = GetWmiObject(
+            "SerialNumber",
+            "Win32_DiskDrive",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<uint>? GetStorageSignature()
+    {
+        var list = GetWmiObject(
+            "Signature",
+            "Win32_DiskDrive",
+            value => value != null ? (uint?)Convert.ToUInt32(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ulong>? GetStorageSize()
+    {
+        var list = GetWmiObject(
+            "Size",
+            "Win32_DiskDrive",
+            value => value != null ? (ulong?)Convert.ToUInt64(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetStorageStatus()
+    {
+        var list = GetWmiObject(
+            "Status",
+            "Win32_DiskDrive",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ushort>? GetStorageStatusInfo()
+    {
+        var list = GetWmiObject(
+            "StatusInfo",
+            "Win32_DiskDrive",
+            value => value != null ? (ushort?)Convert.ToUInt16(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetStorageSystemCreationClassName()
+    {
+        var list = GetWmiObject(
+            "SystemCreationClassName",
+            "Win32_DiskDrive",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetStorageSystemName()
+    {
+        var list = GetWmiObject(
+            "SystemName",
+            "Win32_DiskDrive",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ulong>? GetStorageTotalCylinders()
+    {
+        var list = GetWmiObject(
+            "TotalCylinders",
+            "Win32_DiskDrive",
+            value => value != null ? (ulong?)Convert.ToUInt64(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<uint>? GetStorageTotalHeads()
+    {
+        var list = GetWmiObject(
+            "TotalHeads",
+            "Win32_DiskDrive",
+            value => value != null ? (uint?)Convert.ToUInt32(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ulong>? GetStorageTotalSectors()
+    {
+        var list = GetWmiObject(
+            "TotalSectors",
+            "Win32_DiskDrive",
+            value => value != null ? (ulong?)Convert.ToUInt64(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ulong>? GetStorageTotalTracks()
+    {
+        var list = GetWmiObject(
+            "TotalTracks",
+            "Win32_DiskDrive",
+            value => value != null ? (ulong?)Convert.ToUInt64(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<uint>? GetStorageTracksPerCylinder()
+    {
+        var list = GetWmiObject(
+            "TracksPerCylinder",
+            "Win32_DiskDrive",
+            value => value != null ? (uint?)Convert.ToUInt32(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    /*
+    * -------------------------------------------------------------------------------------------------------
+    * ---- MOTHERBOARD INFORMATION METHODS
+    * -------------------------------------------------------------------------------------------------------
+    *
+    * Win32_BaseBoard
+    * https://learn.microsoft.com/en-us/windows/win32/cimwin32prov/win32-baseboard
+    *
+    */
+
+    public List<string?>? GetMotherboardCaption()
+    {
+        var list = GetWmiObject(
+            "Caption",
+            "Win32_BaseBoard",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string[]?>? GetMotherboardConfigOptions()
+    {
+        var list = GetWmiObject("ConfigOptions", "Win32_BaseBoard", value => value as string[])
+            ?.Where(value => value != null && value.Length > 0)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetMotherboardCreationClassName()
+    {
+        var list = GetWmiObject(
+            "CreationClassName",
+            "Win32_BaseBoard",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<float>? GetMotherboardDepth()
+    {
+        var list = GetWmiObject(
+            "Depth",
+            "Win32_BaseBoard",
+            value => value != null ? (float?)Convert.ToSingle(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetMotherboardDescription()
+    {
+        var list = GetWmiObject(
+            "Description",
+            "Win32_BaseBoard",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<float>? GetMotherboardHeight()
+    {
+        var list = GetWmiObject(
+            "Height",
+            "Win32_BaseBoard",
+            value => value != null ? (float?)Convert.ToSingle(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<bool>? GetMotherboardHostingBoard()
+    {
+        var list = GetWmiObject(
+            "HostingBoard",
+            "Win32_BaseBoard",
+            value => value != null ? (bool?)Convert.ToBoolean(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<bool>? GetMotherboardHotSwappable()
+    {
+        var list = GetWmiObject(
+            "HotSwappable",
+            "Win32_BaseBoard",
+            value => value != null ? (bool?)Convert.ToBoolean(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<DateTime>? GetMotherboardInstallDate()
+    {
+        var list = GetWmiObject(
+            "InstallDate",
+            "Win32_BaseBoard",
+            value => value != null ? value : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => ManagementDateTimeConverter.ToDateTime(value!.ToString()))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetMotherboardManufacturer()
+    {
+        var list = GetWmiObject(
+            "Manufacturer",
+            "Win32_BaseBoard",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetMotherboardModel()
+    {
+        var list = GetWmiObject(
+            "Model",
+            "Win32_BaseBoard",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetMotherboardName()
+    {
+        var list = GetWmiObject(
+            "Name",
+            "Win32_BaseBoard",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetMotherboardOtherIdentifyingInfo()
+    {
+        var list = GetWmiObject(
+            "OtherIdentifyingInfo",
+            "Win32_BaseBoard",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetMotherboardPartNumber()
+    {
+        var list = GetWmiObject(
+            "PartNumber",
+            "Win32_BaseBoard",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<bool>? GetMotherboardPoweredOn()
+    {
+        var list = GetWmiObject(
+            "PoweredOn",
+            "Win32_BaseBoard",
+            value => value != null ? (bool?)Convert.ToBoolean(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetMotherboardProduct()
+    {
+        var list = GetWmiObject(
+            "Product",
+            "Win32_BaseBoard",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<bool>? GetMotherboardRemovable()
+    {
+        var list = GetWmiObject(
+            "Removable",
+            "Win32_BaseBoard",
+            value => value != null ? (bool?)Convert.ToBoolean(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<bool>? GetMotherboardReplaceable()
+    {
+        var list = GetWmiObject(
+            "Replaceable",
+            "Win32_BaseBoard",
+            value => value != null ? (bool?)Convert.ToBoolean(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetMotherboardRequirementsDescription()
+    {
+        var list = GetWmiObject(
+            "RequirementsDescription",
+            "Win32_BaseBoard",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<bool>? GetMotherboardRequiresDaughterBoard()
+    {
+        var list = GetWmiObject(
+            "RequiresDaughterBoard",
+            "Win32_BaseBoard",
+            value => value != null ? (bool?)Convert.ToBoolean(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetMotherboardSerialNumber()
+    {
+        var list = GetWmiObject(
+            "SerialNumber",
+            "Win32_BaseBoard",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetMotherboardSKU()
+    {
+        var list = GetWmiObject(
+            "SKU",
+            "Win32_BaseBoard",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetMotherboardSlotLayout()
+    {
+        var list = GetWmiObject(
+            "SlotLayout",
+            "Win32_BaseBoard",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<bool>? GetMotherboardSpecialRequirements()
+    {
+        var list = GetWmiObject(
+            "SpecialRequirements",
+            "Win32_BaseBoard",
+            value => value != null ? (bool?)Convert.ToBoolean(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetMotherboardStatus()
+    {
+        var list = GetWmiObject(
+            "Status",
+            "Win32_BaseBoard",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetMotherboardTag()
+    {
+        var list = GetWmiObject(
+            "Tag",
+            "Win32_BaseBoard",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetMotherboardVersion()
+    {
+        var list = GetWmiObject(
+            "Version",
+            "Win32_BaseBoard",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<float>? GetMotherboardWeight()
+    {
+        var list = GetWmiObject(
+            "Weight",
+            "Win32_BaseBoard",
+            value => value != null ? (float?)Convert.ToSingle(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<float>? GetMotherboardWidth()
+    {
+        var list = GetWmiObject(
+            "Width",
+            "Win32_BaseBoard",
+            value => value != null ? (float?)Convert.ToSingle(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    /*
+    * -------------------------------------------------------------------------------------------------------
+    * ---- OPERATING SYSTEM INFORMATION METHODS
+    * -------------------------------------------------------------------------------------------------------
+    *
+    * Win32_OperatingSystem
+    * https://learn.microsoft.com/en-us/windows/win32/cimwin32prov/win32-operatingsystem
+    *
+    */
+
+    public List<string?>? GetOsBootDevice()
+    {
+        var list = GetWmiObject(
+            "BootDevice",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsBuildNumber()
+    {
+        var list = GetWmiObject(
+            "BuildNumber",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsBuildType()
+    {
+        var list = GetWmiObject(
+            "BuildType",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsCaption()
+    {
+        var list = GetWmiObject(
+            "Caption",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsCodeSet()
+    {
+        var list = GetWmiObject(
+            "CodeSet",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsCountryCode()
+    {
+        var list = GetWmiObject(
+            "CountryCode",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsCreationClassName()
+    {
+        var list = GetWmiObject(
+            "CreationClassName",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsCSCreationClassName()
+    {
+        var list = GetWmiObject(
+            "CSCreationClassName",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsCSDVersion()
+    {
+        var list = GetWmiObject(
+            "CSDVersion",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsCSName()
+    {
+        var list = GetWmiObject(
+            "CSName",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<short>? GetOsCurrentTimeZone()
+    {
+        var list = GetWmiObject(
+            "CurrentTimeZone",
+            "Win32_OperatingSystem",
+            value => value != null ? (short?)Convert.ToInt16(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<bool>? GetOsDataExecutionPrevention_Available()
+    {
+        var list = GetWmiObject(
+            "DataExecutionPrevention_Available",
+            "Win32_OperatingSystem",
+            value => value != null ? (bool?)Convert.ToBoolean(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<bool>? GetOsDataExecutionPrevention_32BitApplications()
+    {
+        var list = GetWmiObject(
+            "DataExecutionPrevention_32BitApplications",
+            "Win32_OperatingSystem",
+            value => value != null ? (bool?)Convert.ToBoolean(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<bool>? GetOsDataExecutionPrevention_Drivers()
+    {
+        var list = GetWmiObject(
+            "DataExecutionPrevention_Drivers",
+            "Win32_OperatingSystem",
+            value => value != null ? (bool?)Convert.ToBoolean(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<byte>? GetOsDataExecutionPrevention_SupportPolicy()
+    {
+        var list = GetWmiObject(
+            "DataExecutionPrevention_SupportPolicy",
+            "Win32_OperatingSystem",
+            value => value != null ? (byte?)Convert.ToByte(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<bool>? GetOsDebug()
+    {
+        var list = GetWmiObject(
+            "Debug",
+            "Win32_OperatingSystem",
+            value => value != null ? (bool?)Convert.ToBoolean(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsDescription()
+    {
+        var list = GetWmiObject(
+            "Description",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<bool>? GetOsDistributed()
+    {
+        var list = GetWmiObject(
+            "Distributed",
+            "Win32_OperatingSystem",
+            value => value != null ? (bool?)Convert.ToBoolean(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<uint>? GetOsEncryptionLevel()
+    {
+        var list = GetWmiObject(
+            "EncryptionLevel",
+            "Win32_OperatingSystem",
+            value => value != null ? (uint?)Convert.ToUInt32(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<byte>? GetOsForegroundApplicationBoost()
+    {
+        // ForegroundApplicationBoost contains default value, from docs:
+        // uint8 ForegroundApplicationBoost = 2;
+
+        var list = GetWmiObject(
+            "ForegroundApplicationBoost",
+            "Win32_OperatingSystem",
+            value => value != null ? (byte?)Convert.ToByte(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ulong>? GetOsFreePhysicalMemory()
+    {
+        var list = GetWmiObject(
+            "FreePhysicalMemory",
+            "Win32_OperatingSystem",
+            value => value != null ? (ulong?)Convert.ToUInt64(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ulong>? GetOsFreeSpaceInPagingFiles()
+    {
+        var list = GetWmiObject(
+            "FreeSpaceInPagingFiles",
+            "Win32_OperatingSystem",
+            value => value != null ? (ulong?)Convert.ToUInt64(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ulong>? GetOsFreeVirtualMemory()
+    {
+        var list = GetWmiObject(
+            "FreeVirtualMemory",
+            "Win32_OperatingSystem",
+            value => value != null ? (ulong?)Convert.ToUInt64(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<DateTime>? GetOsInstallDate()
+    {
+        var list = GetWmiObject(
+            "InstallDate",
+            "Win32_OperatingSystem",
+            value => value != null ? value : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => ManagementDateTimeConverter.ToDateTime(value!.ToString()))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<uint>? GetOsLargeSystemCache()
+    {
+        var list = GetWmiObject(
+            "LargeSystemCache",
+            "Win32_OperatingSystem",
+            value => value != null ? (uint?)Convert.ToUInt32(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<DateTime>? GetOsLastBootUpTime()
+    {
+        var list = GetWmiObject(
+            "LastBootUpTime",
+            "Win32_OperatingSystem",
+            value => value != null ? value : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => ManagementDateTimeConverter.ToDateTime(value!.ToString()))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<DateTime>? GetOsLocalDateTime()
+    {
+        var list = GetWmiObject(
+            "LocalDateTime",
+            "Win32_OperatingSystem",
+            value => value != null ? value : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => ManagementDateTimeConverter.ToDateTime(value!.ToString()))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsLocale()
+    {
+        var list = GetWmiObject(
+            "Locale",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsManufacturer()
+    {
+        var list = GetWmiObject(
+            "Manufacturer",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<uint>? GetOsMaxNumberOfProcesses()
+    {
+        var list = GetWmiObject(
+            "MaxNumberOfProcesses",
+            "Win32_OperatingSystem",
+            value => value != null ? (uint?)Convert.ToUInt32(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ulong>? GetOsMaxProcessMemorySize()
+    {
+        var list = GetWmiObject(
+            "MaxProcessMemorySize",
+            "Win32_OperatingSystem",
+            value => value != null ? (ulong?)Convert.ToUInt64(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string[]?>? GetOsMUILanguages()
+    {
+        var list = GetWmiObject("MUILanguages", "Win32_OperatingSystem", value => value as string[])
+            ?.Where(value => value != null && value.Length > 0)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsName()
+    {
+        var list = GetWmiObject(
+            "Name",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<uint>? GetOsNumberOfLicensedUsers()
+    {
+        var list = GetWmiObject(
+            "NumberOfLicensedUsers",
+            "Win32_OperatingSystem",
+            value => value != null ? (uint?)Convert.ToUInt32(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<uint>? GetOsNumberOfProcesses()
+    {
+        var list = GetWmiObject(
+            "NumberOfProcesses",
+            "Win32_OperatingSystem",
+            value => value != null ? (uint?)Convert.ToUInt32(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<uint>? GetOsNumberOfUsers()
+    {
+        var list = GetWmiObject(
+            "NumberOfUsers",
+            "Win32_OperatingSystem",
+            value => value != null ? (uint?)Convert.ToUInt32(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<uint>? GetOsOperatingSystemSKU()
+    {
+        var list = GetWmiObject(
+            "OperatingSystemSKU",
+            "Win32_OperatingSystem",
+            value => value != null ? (uint?)Convert.ToUInt32(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsOrganization()
+    {
+        var list = GetWmiObject(
+            "Organization",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsOSArchitecture()
+    {
+        var list = GetWmiObject(
+            "OSArchitecture",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<uint>? GetOsOSLanguage()
+    {
+        var list = GetWmiObject(
+            "OSLanguage",
+            "Win32_OperatingSystem",
+            value => value != null ? (uint?)Convert.ToUInt32(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<uint>? GetOsOSProductSuite()
+    {
+        var list = GetWmiObject(
+            "OSProductSuite",
+            "Win32_OperatingSystem",
+            value => value != null ? (uint?)Convert.ToUInt32(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ushort>? GetOsOSType()
+    {
+        var list = GetWmiObject(
+            "OSType",
+            "Win32_OperatingSystem",
+            value => value != null ? (ushort?)Convert.ToUInt16(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsOtherTypeDescription()
+    {
+        var list = GetWmiObject(
+            "OtherTypeDescription",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<bool>? GetOsPAEEnabled()
+    {
+        var list = GetWmiObject(
+            "PAEEnabled",
+            "Win32_OperatingSystem",
+            value => value != null ? (bool?)Convert.ToBoolean(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsPlusProductID()
+    {
+        var list = GetWmiObject(
+            "PlusProductID",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsPlusVersionNumber()
+    {
+        var list = GetWmiObject(
+            "PlusVersionNumber",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<bool>? GetOsPortableOperatingSystem()
+    {
+        var list = GetWmiObject(
+            "PortableOperatingSystem",
+            "Win32_OperatingSystem",
+            value => value != null ? (bool?)Convert.ToBoolean(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<bool>? GetOsPrimary()
+    {
+        var list = GetWmiObject(
+            "Primary",
+            "Win32_OperatingSystem",
+            value => value != null ? (bool?)Convert.ToBoolean(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<uint>? GetOsProductType()
+    {
+        var list = GetWmiObject(
+            "ProductType",
+            "Win32_OperatingSystem",
+            value => value != null ? (uint?)Convert.ToUInt32(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsRegisteredUser()
+    {
+        var list = GetWmiObject(
+            "RegisteredUser",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsSerialNumber()
+    {
+        var list = GetWmiObject(
+            "SerialNumber",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ushort>? GetOsServicePackMajorVersion()
+    {
+        var list = GetWmiObject(
+            "ServicePackMajorVersion",
+            "Win32_OperatingSystem",
+            value => value != null ? (ushort?)Convert.ToUInt16(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ushort>? GetOsServicePackMinorVersion()
+    {
+        var list = GetWmiObject(
+            "ServicePackMinorVersion",
+            "Win32_OperatingSystem",
+            value => value != null ? (ushort?)Convert.ToUInt16(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ulong>? GetOsSizeStoredInPagingFiles()
+    {
+        var list = GetWmiObject(
+            "SizeStoredInPagingFiles",
+            "Win32_OperatingSystem",
+            value => value != null ? (ulong?)Convert.ToUInt64(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsStatus()
+    {
+        var list = GetWmiObject(
+            "Status",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<uint>? GetOsSuiteMask()
+    {
+        var list = GetWmiObject(
+            "SuiteMask",
+            "Win32_OperatingSystem",
+            value => value != null ? (uint?)Convert.ToUInt32(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsSystemDevice()
+    {
+        var list = GetWmiObject(
+            "SystemDevice",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsSystemDirectory()
+    {
+        var list = GetWmiObject(
+            "SystemDirectory",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsSystemDrive()
+    {
+        var list = GetWmiObject(
+            "SystemDrive",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ulong>? GetOsTotalSwapSpaceSize()
+    {
+        var list = GetWmiObject(
+            "TotalSwapSpaceSize",
+            "Win32_OperatingSystem",
+            value => value != null ? (ulong?)Convert.ToUInt64(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ulong>? GetOsTotalVirtualMemorySize()
+    {
+        var list = GetWmiObject(
+            "TotalVirtualMemorySize",
+            "Win32_OperatingSystem",
+            value => value != null ? (ulong?)Convert.ToUInt64(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<ulong>? GetOsTotalVisibleMemorySize()
+    {
+        var list = GetWmiObject(
+            "TotalVisibleMemorySize",
+            "Win32_OperatingSystem",
+            value => value != null ? (ulong?)Convert.ToUInt64(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsVersion()
+    {
+        var list = GetWmiObject(
+            "Version",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<string?>? GetOsWindowsDirectory()
+    {
+        var list = GetWmiObject(
+            "WindowsDirectory",
+            "Win32_OperatingSystem",
+            value => value != null ? Convert.ToString(value) : null
+        )
+            ?.Where(value => !string.IsNullOrEmpty(value))
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<byte>? GetOsQuantumLength()
+    {
+        var list = GetWmiObject(
+            "QuantumLength",
+            "Win32_OperatingSystem",
+            value => value != null ? (byte?)Convert.ToByte(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
+            .ToList();
+
+        return list?.Count > 0 ? list : null;
+    }
+
+    public List<byte>? GetOsQuantumType()
+    {
+        var list = GetWmiObject(
+            "QuantumType",
+            "Win32_OperatingSystem",
+            value => value != null ? (byte?)Convert.ToByte(value) : null
+        )
+            ?.Where(value => value != null)
+            .Select(value => value!.Value)
             .ToList();
 
         return list?.Count > 0 ? list : null;

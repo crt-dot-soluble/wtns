@@ -1,5 +1,4 @@
 ﻿using WTNS.Cli;
-using WTNS.Commands;
 using WTNS.Telemetry;
 
 namespace WTNS.Me.Cli;
@@ -16,7 +15,7 @@ public sealed class WTNS
     /// </summary>
     /// <param name="args">The user specified runtime arguments.</param>
     /// <returns></returns>
-    public static async Task Main(string[] args)
+    public static void Main(string[] args)
     {
         // var WTNSCommand = new WTNSCommand();
         // var user = AuthorizationProvider.CreateUser("WTNS", "WTNS");
@@ -57,6 +56,7 @@ public sealed class WTNS
         var profiler = ProfilerFactory.CreateProfiler();
         var cpuinfo = profiler.GetProcessorInfo();
         var memoryinfo = profiler.GetMemoryInfo();
+        var storageinfo = profiler.GetStorageInfo();
 
         Console.ForegroundColor = ConsoleColor.White;
 
@@ -67,19 +67,24 @@ public sealed class WTNS
         cl.Log($"Availability: {cpuinfo.Availability?[0]}");
         cl.Log($"Avilability Friendly Name: {cpuinfo.AvailabilityFriendlyValue?[0]}");
         cl.Log($"Characteristics: {cpuinfo.Characteristics?[0]}");
-        cl.Log($"Characteristics Length: {cpuinfo.CharacteristicsFriendlyValue?[0].Count}");
+        cl.Log(
+            $"Characteristics Length: {(cpuinfo.CharacteristicsFriendlyValue?[0] != null ? cpuinfo.CharacteristicsFriendlyValue?[0] : null)}"
+        );
+
         if (cpuinfo.CharacteristicsFriendlyValue?[0] != null)
         {
-            foreach (string s in cpuinfo.CharacteristicsFriendlyValue?[0])
+            foreach (string s in cpuinfo.CharacteristicsFriendlyValue[0]!)
             {
                 cl.Log($"Characteristics Friendly Value:: {s}");
             }
         }
+
         cl.Log($"ConfigManagerErrorCode: {cpuinfo.ConfigManagerErrorCode?[0]}");
         cl.Log($"ConfigManagerErrorCode Count: {cpuinfo.ConfigManagerErrorCode?.Count}");
         cl.Log(
             $"ConfigManagerErrorCodeFriendlyValue: {cpuinfo.ConfigManagerErrorCodeFriendlyValue?[0]}"
         );
+
         cl.Log($"ConfigManagerUserConfig: {cpuinfo.ConfigManagerUserConfig?[0]}");
         cl.Log($"CpuStatus: {cpuinfo.CpuStatus?[0]}");
         cl.Log($"CpuStatus Friendly Name: {cpuinfo.CpuStatusFriendlyValue?[0]}");
@@ -115,7 +120,7 @@ public sealed class WTNS
         }
 
         cl.Log($"PowerManagementSupported: {cpuinfo.PowerManagementSupported?[0]}");
-        cl.Log($"ProcessorId: {cpuinfo.ProcessorId?[0]}");
+        cl.Log($"ProcessorId: {cpuinfo.ProcessorID?[0]}");
         cl.Log($"ProcessorType: {cpuinfo.ProcessorType?[0]}");
         cl.Log($"ProcessorTypeFriendlyValue: {cpuinfo.ProcessorTypeFriendlyValue?[0]}");
         cl.Log($"Revision: {cpuinfo.Revision?[0]}");
@@ -127,7 +132,7 @@ public sealed class WTNS
         cl.Log($"SystemCreationClassName: {cpuinfo.SystemCreationClassName?[0]}");
         cl.Log($"SystemName: {cpuinfo.SystemName?[0]}");
         cl.Log($"ThreadCount: {cpuinfo.ThreadCount?[0]}");
-        cl.Log($"UniqueId: {cpuinfo.UniqueId?[0]}");
+        cl.Log($"UniqueId: {cpuinfo.UniqueID?[0]}");
 
         Console.ForegroundColor = ConsoleColor.Cyan;
         cl.Log("");
@@ -146,9 +151,16 @@ public sealed class WTNS
         cl.Log($"Memory InterleaveDepth: {memoryinfo.InterleaveDataDepth?[0]}");
         cl.Log($"Memory InterleaveDataDepth: {memoryinfo.InterleaveDataDepth?[0]}");
 
+        cl.Log("");
+
+        cl.Log($"Storage Availability: {storageinfo.Availability?[0]}");
+        cl.Log($"Storage BytesPerSector: {storageinfo.BytesPerSector?[0]}");
+
         Console.ReadLine();
+
         // --- COMMENT THIS OUT TO STOP DISPLAYING THE ARGUMENTS AS OUTPUT
         Repl.Log($"Args: {string.Join(' ', args)}", false, StructuredOutput.OutputMode.DEBUG);
-        CommandRegistry.Instance.SaveHistory("./history.json");
+
+        // CommandRegistry.Instance.SaveHistory("./history.json");
     }
 }

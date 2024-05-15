@@ -40,7 +40,7 @@ public struct MemoryInfo
     public List<bool>? PoweredOn;
     public List<bool>? Removable;
     public List<bool>? Replaceable;
-    public List<bool>? SerialNumber;
+    public List<string?>? SerialNumber;
     public List<string?>? SKU;
     public List<uint>? SMBIOSMemoryType;
     public List<uint>? Speed;

@@ -21,7 +21,7 @@ public struct CpuInfo
     public List<decimal>? CurrentVoltageFriendlyValue;
     public List<ushort>? DataWidth;
     public List<string?>? Description;
-    public List<string?>? DeviceId;
+    public List<string?>? DeviceID;
     public List<bool>? ErrorCleared;
     public List<string?>? ErrorDescription;
     public List<uint>? ExtClock;
@@ -40,11 +40,11 @@ public struct CpuInfo
     public List<uint>? NumberOfEnabledCore;
     public List<uint>? NumberOfLogicalProcessors;
     public List<string?>? PartNumber;
-    public List<string?>? PnpDeviceId;
+    public List<string?>? PNPDeviceID;
     public List<ushort[]?>? PowerManagementCapabilities;
     public List<List<string?>?>? PowerManagementCapabilitiesFriendlyValue;
     public List<bool>? PowerManagementSupported;
-    public List<string?>? ProcessorId;
+    public List<string?>? ProcessorID;
     public List<ushort>? ProcessorType;
     public List<string?>? ProcessorTypeFriendlyValue;
     public List<ushort>? Revision;
@@ -59,5 +59,5 @@ public struct CpuInfo
     public List<string?>? SystemCreationClassName;
     public List<string?>? SystemName;
     public List<uint>? ThreadCount;
-    public List<string?>? UniqueId;
+    public List<string?>? UniqueID;
 }
